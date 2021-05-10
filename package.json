@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "fluent-ffmpeg": "^2.1.2",
+    "js-priority-queue": "^0.1.5",
     "png-js": "^1.0.0",
     "pngjs": "^6.0.0",
     "yargs": "^17.0.1"

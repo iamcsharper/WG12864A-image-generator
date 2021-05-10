@@ -34,7 +34,7 @@ const ONESHOT_MODE = 1;
  */
 const ALL_MODE = 2;
 
-const MODE = ANIMATION_MODE;
+const MODE = ONESHOT_MODE;
 
 /**
  * @see ANIMATION_MODE
@@ -45,7 +45,7 @@ const animationTill = 5;
 /**
  * @see ONESHOT_MODE
  */
-const oneshotFrameIdx = 3;
+const oneshotFrameIdx = 30;
 
 /**
 * Reads a PNG image, returns a Promise with inline Buffer color data [R0 G0 B0 A0], ...
@@ -108,9 +108,9 @@ async function convertFrame(path) {
  * @param {number[]} second 
  */
 function printCode(first, second) {
-	console.log(`static uint8_t firstHalf[${oneFlat.length}] = {${first.join(',')}};`);
+	console.log(`static uint8_t firstHalf[] = {${first.join(',')}};`);
 	console.log();
-	console.log(`static uint8_t secondHalf[${oneFlat.length}] = {${second.join(',')}};`);
+	console.log(`static uint8_t secondHalf[] = {${second.join(',')}};`);
 }
 
 async function run() {
@@ -127,7 +127,7 @@ async function run() {
 
 		printCode(oneFlat, twoFlat);
 	} else if (MODE == ONESHOT_MODE) {
-		const [one, two] = await convertFrame(oneshotFrameIdx);  
+		const [one, two] = await convertFrame(frames[oneshotFrameIdx]);  
 
 		printCode(one, two);
 	} else if (MODE == ALL_MODE) {
